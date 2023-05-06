@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from "react";
 import { View, Image, Input, Form, Button, BaseEventOrig, InputProps } from "@tarojs/components"
 import firelogo from '@/asserts/images/fire.png';
 import styles from './login.module.scss';
-import { debounce } from "../../../src/utils/debounce";
 
 
 const Login = () => {
@@ -14,15 +13,11 @@ const Login = () => {
   const handleNameInput = (event: BaseEventOrig<InputProps>) => {
     console.log(event.detail.value);
     let value = event.detail.value;
-    debounce(() => {
-      setName(value as string);
-    })
+    setName(value as string);
   }
   const handlePassInput = (e: BaseEventOrig<InputProps>) => {
     let value = e.detail.value;
-    debounce(() => {
-      setPass(value as string);
-    })
+    setPass(value as string);
   }
   return (
     <View className={styles.main}>

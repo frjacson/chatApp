@@ -4,15 +4,13 @@
   .header {
     width: 100%;
     height: 88px;
-    margin-top: $taro-spacing-col-lg;
     position: relative;
-    .register {
+    .image {
       position: absolute;
-      right: 36px;
-      font-family: PingFangSC-Medium;
-      color: #333333;
-      letter-spacing: 0;
-      font-weight: 500;
+      left: 24px;
+      top: 24px;
+      width: 48px;
+      height: 48px;
     }
   } 
   .logoContainer {
@@ -26,29 +24,41 @@
       height: 92px;
     }
   }
-  .loginContainer {
+  .registerContainer {
     width: 100%;
     padding-top: 68px;
     padding-left: 50px;
     padding-right: 50px;
+    
     .loginText {
       font-size: 64px;
       color: #272832;
       font-weight: 500;
+      margin-bottom: 68px;
     }
-    .loginContent {
-      color: $taro-text-color-grey;
-      margin-bottom: 90px;
-    }
-    
     .formContainer {
       width: 100%;
       .inputContainer {
         width: 85%;
         margin-bottom: 80px;
-        input {
+        .input {
+          display: flex;
+          align-items: center;
+          // justify-content: space-between;
           font-size: $taro-spacing-col-base;
           padding-bottom: 18px;
+          input {
+            flex: 5;
+          }
+          .right {
+            flex: 2;
+            text-align: right;
+            color: $taro-color-warning;
+            img {
+              width: 42px;
+              height: 32px;
+            }
+          }
         }
         .line {
           border: 1px solid #272832;
@@ -64,4 +74,12 @@
       }
     }
   }
+}
+.false {
+  color: $taro-color-error;
+  font-size: 32px;
+}
+.errorMessage {
+  color: $taro-color-error;
+  font-size: $taro-font-size-base;
 }

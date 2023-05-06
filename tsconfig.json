@@ -24,6 +24,7 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/asserts/*": ["src/asserts/*"],
+      "@/utils/*": ["src/utils/*"],
     }
   },
   "include": ["./src", "./types"],
