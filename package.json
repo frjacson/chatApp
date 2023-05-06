@@ -39,6 +39,7 @@
     "@tarojs/components": "3.6.6",
     "@tarojs/helper": "3.6.6",
     "@tarojs/plugin-framework-react": "3.6.6",
+    "@tarojs/plugin-mock": "^0.0.9",
     "@tarojs/plugin-platform-alipay": "3.6.6",
     "@tarojs/plugin-platform-h5": "3.6.6",
     "@tarojs/plugin-platform-jd": "3.6.6",
@@ -50,6 +51,9 @@
     "@tarojs/runtime": "3.6.6",
     "@tarojs/shared": "3.6.6",
     "@tarojs/taro": "3.6.6",
+    "@types/mockjs": "^1.0.7",
+    "dayjs": "^1.11.7",
+    "mockjs": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

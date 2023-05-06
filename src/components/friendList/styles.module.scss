@@ -1,0 +1,62 @@
+.listContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 0;
+  &:active {
+    background-color: $taro-bg-color-grey;
+  }
+  .listLeft {
+    position: relative;
+    width: 15%;
+    img {
+      width: 96px;
+      height: 96px;
+      border-radius: $taro-border-radius-base;
+      background-color: $taro-color-primary;
+    }
+    .tip {
+      position: absolute;
+      top: -8px;
+      left: 68px;
+      height: 36px;
+      min-width: 36px;
+      background: $taro-color-warning;
+      border-radius: $taro-bnorder-radius-circle;
+      font-size: $taro-font-size-sm;
+      color: $taro-text-color-inverse;
+      text-align: center;
+      z-index: 1;
+    }    
+  }
+  .listRight {
+    width: 85%;
+    min-width: 0;
+    padding-left: $taro-spacing-col-base;
+    .top {
+      display: flex;
+      .name {
+        flex: 5;
+        font-size: $taro-font-size-lg;
+        font-weight: 400;
+        color: $taro-text-color;
+        line-height: 50px;;
+      }
+      .time {
+        flex: 2;
+        text-align: center;
+        color: $taro-text-color-grey;
+        font-size: $taro-font-size-base;
+      }
+    }
+    .info {
+      font-size: $taro-font-size-base;
+      color: $taro-text-color-grey;
+      /* 文字超出省略*/
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
+    }
+  }
+}

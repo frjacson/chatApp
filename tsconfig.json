@@ -23,6 +23,7 @@
     ],
     "paths": {
       "@/components/*": ["src/components/*"],
+      "@/asserts/*": ["src/asserts/*"],
     }
   },
   "include": ["./src", "./types"],

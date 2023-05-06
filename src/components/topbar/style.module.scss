@@ -1,0 +1,50 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .topBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 88px;
+    width: 100%;
+    background: $taro-bg-color;
+    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+
+    .topBarContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // height: 100%;
+      .topBarLeft {
+        padding-left: $taro-spacing-col-base;
+        img {
+          width: 68px;
+          height: 68px;
+          padding-top: 10px;
+          border-radius: $taro-border-radius-base;
+        }
+      }
+      .topBarContent {
+        padding-left: $taro-spacing-col-base;
+        img {
+          width: 88px;
+          height: 42px;
+        }
+      }
+      .topBarRight {
+        .search, .add {
+          display: inline-block;
+          padding-right: $taro-spacing-col-base;
+        }
+        img {
+          width: 52px;
+          height: 52px;
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+}

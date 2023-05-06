@@ -1,4 +1,6 @@
 .index {
-  color: $taro-text-color;
-  font-size: $taro-font-size-base;
+  padding-bottom: $taro-spacing-col-base;
+}
+.main {
+  padding: 104px $taro-spacing-col-base 0;
 }
