@@ -31,7 +31,7 @@ const FriendList: FC = () => {
           return (
             <View className={styles.listContainer} key={index}>
               <View className={styles.listLeft}>
-              <Text className={styles.tip}>1</Text>
+              <Text className={styles.tip}>99</Text>
               <Image src={onePic}></Image>
             </View>
             <View className={styles.listRight}>

@@ -19,7 +19,7 @@ export default function Index() {
 
   return (
     <View className='index'>
-      <TopBar>
+      <TopBar underline>
         <Image src={pic1}></Image>
         <Image src={fireLogo}></Image>
         <View>

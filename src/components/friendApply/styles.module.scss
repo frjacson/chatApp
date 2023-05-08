@@ -17,16 +17,18 @@
     }
     .tip {
       position: absolute;
-      top: -8px;
+      top: -8px; 
       left: 68px;
       height: 36px;
-      min-width: 36px;
+      line-height: 36px;
+      padding: 0 8px;
+      min-width: 20px;
       background: $taro-color-warning;
-      border-radius: $taro-border-radius-circle;
+      border-radius: 18px;
       font-size: $taro-font-size-sm;
       color: $taro-text-color-inverse;
       text-align: center;
-      z-index: 10;
+      z-index: 1;
     }    
   }
   .listRight {
