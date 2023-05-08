@@ -1,6 +1,7 @@
 import { View, Image, Form, Input, Button, Text } from "@tarojs/components";
 import { useRef, useState } from "react";
 import { rules } from '@/utils/validateRules';
+import Taro from "@tarojs/taro";
 import Validator, { Rules } from 'async-validator'
 import firelogo from '@/asserts/images/fire.png';
 import backlogo from '@/asserts/images/back.png';
@@ -8,7 +9,6 @@ import bingo from '@/asserts/images/bingo.png';
 import look from '@/asserts/images/look.png';
 import unlook from '@/asserts/images/unlook.png';
 import styles from "./register.module.scss";
-import Taro from "@tarojs/taro";
 
 const Register = () => {
   const [pass, setPass] = useState("");

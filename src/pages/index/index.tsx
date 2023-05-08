@@ -1,9 +1,14 @@
 import TopBar from '@/components/topbar'
 import FriendApply from '@/components/friendApply'
 import FriendList from '@/components/friendList'
-import { View } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
+import pic1 from '@/asserts/images/img.png';
+import fireLogo from '@/asserts/images/fire.png';
+import search from '@/asserts/images/search.png';
+import add from '@/asserts/images/group.png';
 import './index.scss'
+
 
 
 
@@ -14,7 +19,18 @@ export default function Index() {
 
   return (
     <View className='index'>
-      <TopBar /> 
+      <TopBar>
+        <Image src={pic1}></Image>
+        <Image src={fireLogo}></Image>
+        <View>
+        <View className='search'>
+          <Image src={search}></Image>
+          </View>
+          <View className='add'>
+            <Image src={add}></Image>
+          </View>
+        </View>
+      </TopBar>
       <View className='main'>
         <FriendApply></FriendApply>
         <FriendList></FriendList>

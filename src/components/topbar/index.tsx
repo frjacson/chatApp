@@ -1,30 +1,18 @@
-import { View, Image } from '@tarojs/components';
-import pic1 from '@/asserts/images/img.png';
-import fireLogo from '@/asserts/images/fire.png';
-import search from '@/asserts/images/search.png';
-import add from '@/asserts/images/group.png';
+import React, { FC, PropsWithChildren, ReactNode} from "react";
+import { View } from "@tarojs/components";
+import './index.scss'
 
-import styles from './style.module.scss';
-
-
-const TopBar = function () {
+const TopBar = (props) => {
+  const { children } = props;
+  const [leftChildren, centerChildren, rightChildren] = React.Children.toArray(children);
   return (
-    <View className={styles.content}>
-      <View className={styles.topBar}>
-       <View className={styles.topBarContainer}>
-        <View className={styles.topBarLeft}>
-          <Image src={pic1}></Image>
-        </View>
-        <View className={styles.topBarContent}>
-          <Image src={fireLogo}></Image>
-        </View>
-        <View className={styles.topBarRight}>
-          <View className={styles.search}>
-            <Image src={search}></Image>
-          </View>
-          <View className={styles.add}>
-            <Image src={add}></Image>
-          </View>
+    <View className='content'>
+      <View className='topBar'>
+      <View className='topBarContainer'>
+       <View className='topBarLeft'>{leftChildren}</View> 
+       <View className='topBarContent'>{centerChildren}</View> 
+       <View className='topBarRight'>
+          {rightChildren}
         </View>
         </View> 
       </View>
