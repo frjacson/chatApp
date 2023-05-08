@@ -8,6 +8,7 @@ import bingo from '@/asserts/images/bingo.png';
 import look from '@/asserts/images/look.png';
 import unlook from '@/asserts/images/unlook.png';
 import styles from "./register.module.scss";
+import Taro from "@tarojs/taro";
 
 const Register = () => {
   const [pass, setPass] = useState("");
@@ -39,10 +40,13 @@ const Register = () => {
       }
     })
   }
+  const handleBackClick = () => {
+    Taro.navigateBack();
+  }
   return (
     <View className={styles.main}>
       <View className={styles.header}>
-        <Image className={styles.image} src={backlogo}></Image>
+        <Image className={styles.image} onClick={handleBackClick} src={backlogo}></Image>
       </View>
       <View className={styles.logoContainer}>
         <Image src={firelogo}></Image>

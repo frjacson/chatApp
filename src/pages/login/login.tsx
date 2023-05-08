@@ -1,4 +1,5 @@
-import { ChangeEvent, useState } from "react";
+import Taro from "@tarojs/taro";
+import { useState } from "react";
 import { View, Image, Input, Form, Button, BaseEventOrig, InputProps } from "@tarojs/components"
 import firelogo from '@/asserts/images/fire.png';
 import styles from './login.module.scss';
@@ -19,10 +20,15 @@ const Login = () => {
     let value = e.detail.value;
     setPass(value as string);
   }
+  const handleRegisterClick = () => {
+    Taro.navigateTo({
+      url: '/pages/register/register'
+    })
+  }
   return (
     <View className={styles.main}>
       <View className={styles.header}>
-        <View className={styles.register}>注册</View>
+        <View className={styles.register} onClick={handleRegisterClick}>注册</View>
       </View>
       <View className={styles.logoContainer}>
         <Image src={firelogo}></Image>
