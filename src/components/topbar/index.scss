@@ -11,12 +11,11 @@
     width: 100%;
     background: $taro-bg-color;
     z-index: 999;
-
     .topBarContainer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      // height: 100%;
+      height: 100%;
       .topBarLeft {
         padding-left: $taro-spacing-col-base;
         img {

@@ -2,7 +2,7 @@ import TopBar from '@/components/topbar'
 import FriendApply from '@/components/friendApply'
 import FriendList from '@/components/friendList'
 import { View, Image } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
+import Taro, { useLoad } from '@tarojs/taro'
 import pic1 from '@/asserts/images/img.png';
 import fireLogo from '@/asserts/images/fire.png';
 import search from '@/asserts/images/search.png';
@@ -17,6 +17,11 @@ export default function Index() {
     console.log('Page loaded.')
   })
 
+  const handleSearchClick = () => {
+    Taro.navigateTo({
+      url: '/pages/search/search'
+    })
+  }
   return (
     <View className='index'>
       <TopBar underline>
@@ -24,7 +29,7 @@ export default function Index() {
         <Image src={fireLogo}></Image>
         <View>
         <View className='search'>
-          <Image src={search}></Image>
+          <Image src={search} onClick={handleSearchClick}></Image>
           </View>
           <View className='add'>
             <Image src={add}></Image>

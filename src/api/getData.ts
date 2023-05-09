@@ -9,3 +9,13 @@ export const getFriendList = async () => {
     },
   });
 };
+
+export const getSearchInfo = async () => {
+  return Taro.request({
+    url: "http://localhost:9999/api/user/searchList",
+    method: "GET",
+    header: {
+      "content-type": "application/json",
+    },
+  });
+};
