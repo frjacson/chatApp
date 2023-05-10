@@ -6,12 +6,14 @@ import './index.scss'
 type Iprops = {
   underline ?: boolean
   children: ReactNode
+  isOpacity?: boolean;
 }
 const TopBar: FC<Iprops> = (props) => {
-  const { children, underline = true } = props;
+  const { children, underline = true, isOpacity = false } = props;
   const [leftChildren, centerChildren, rightChildren] = React.Children.toArray(children);
   const topBarClasses = classNames('topBar', {
-    'topBarUnderline': underline
+    'topBarUnderline': underline,
+    'topBarOpacity': isOpacity
   })
   return (
     <View className='content'>

@@ -3,13 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  .topBar.topBarOpacity {
+    background-color: transparent;
+  }
   .topBar {
     position: fixed;
     top: 0;
     left: 0;
     height: 88px;
     width: 100%;
-    background: $taro-bg-color;
+    // background: $taro-bg-color;
+    background-color: rgba(255, 255, 255, 0.9);
     z-index: 999;
     .topBarContainer {
       display: flex;
