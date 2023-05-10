@@ -1,4 +1,5 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import Taro from "@tarojs/taro";
+import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { View, Image, Text } from "@tarojs/components";
 import onePic from '@/asserts/images/img2.jpeg';
 import { SearchProps } from "src/pages/search/search";
@@ -32,12 +33,18 @@ const SearchList: FC<IProps> = (props) => {
       )
     );
   }
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    Taro.navigateTo({
+      url: "/pages/profile/profile?id=1"
+    })
+  }
   const renderElement = (list: SearchProps[]) => {
     return (
       list && list.filter((item) => item.listName.toLocaleLowerCase().includes(searchValue.toLocaleString())).map((item, index) => {
         return (
           <View className={styles.listContainer} key={index}>
-            <View className={styles.listLeft}>
+            <View className={styles.listLeft} onClick={handleImageClick}>
               <Image src={onePic}></Image>
             </View>
             <View className={styles.listRight}>

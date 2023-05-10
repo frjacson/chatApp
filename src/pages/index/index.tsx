@@ -22,10 +22,15 @@ export default function Index() {
       url: '/pages/search/search'
     })
   }
+  const handleImageClick = () => {
+    Taro.navigateTo({
+      url: '/pages/profile/profile?id=1',
+    })
+  }
   return (
     <View className='index'>
       <TopBar underline>
-        <Image src={pic1}></Image>
+        <Image src={pic1} onClick={handleImageClick}></Image>
         <Image src={fireLogo}></Image>
         <View>
         <View className='search'>

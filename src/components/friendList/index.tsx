@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components'
 import {FC, Fragment, useEffect, useState} from 'react';
 import onePic from '@/asserts/images/img2.jpeg';
@@ -21,6 +22,12 @@ const FriendList: FC = () => {
     })
     setFriendList([...data.data.data])
   }
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    Taro.navigateTo({
+      url: '/pages/profile/profile?id=1'
+    });
+  }
   useEffect(() => {
     getData();
   }, [])
@@ -32,7 +39,7 @@ const FriendList: FC = () => {
             <View className={styles.listContainer} key={index}>
               <View className={styles.listLeft}>
               <Text className={styles.tip}>99</Text>
-              <Image src={onePic}></Image>
+              <Image src={onePic} onClick={handleImageClick}></Image>
             </View>
             <View className={styles.listRight}>
               <View className={styles.top}>

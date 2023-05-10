@@ -66,11 +66,14 @@ const Profile = () => {
     setIsAdd(false);
     handleAddClick();
   }
+  const handleBackClick = () => {
+    Taro.navigateBack();
+  }
   return (
     <View className={styles.profileContainer}>
       <TopBar isOpacity underline={false}>
         <View className={styles.back}>
-          <Image src={backlogo}></Image>
+          <Image src={backlogo} onClick={handleBackClick}></Image>
         </View>
         <View></View>
         <View className={styles.more}>
