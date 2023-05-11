@@ -67,6 +67,7 @@ const config = {
         },
       },
     },
+    esnextModules: ["taro-cropper"],
   },
   rn: {
     appName: "taroDemo",

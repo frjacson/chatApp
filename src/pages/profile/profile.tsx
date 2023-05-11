@@ -1,12 +1,11 @@
 import Taro from "@tarojs/taro";
-import { ChangeEvent, useState, useRef, useEffect } from "react";
-import { View, Image, Text } from "@tarojs/components";
+import { ChangeEvent, useState } from "react";
+import { View, Image } from "@tarojs/components";
 import TopBar from "@/components/topbar";
 import backlogo from '@/asserts/images/back.png';
 import morelogo from '@/asserts/images/more@2x.png';
 import bglogo from '@/asserts/images/lyf.jpeg';
 import female from '@/asserts/images/female.png';
-import { useSafeHeight } from "@/utils/getSafeHeight";
 import styles from './profile.modules.scss';
 
 
@@ -69,6 +68,11 @@ const Profile = () => {
   const handleBackClick = () => {
     Taro.navigateBack();
   }
+  const handleMoreClick = () => {
+    Taro.navigateTo({
+      url: '/pages/user_detail/userDetail?id=1'
+    })
+  }
   return (
     <View className={styles.profileContainer}>
       <TopBar isOpacity underline={false}>
@@ -77,7 +81,7 @@ const Profile = () => {
         </View>
         <View></View>
         <View className={styles.more}>
-          <Image src={morelogo}></Image>
+          <Image src={morelogo} onClick={handleMoreClick}></Image>
         </View>
       </TopBar>
       <View className={styles.bg} animation={bgAnimationData}>

@@ -19,3 +19,13 @@ export const getSearchInfo = async () => {
     },
   });
 };
+
+export const getUserDetail = async () => {
+  return Taro.request({
+    url: "http://localhost:9999/api/user/userDetail",
+    method: "GET",
+    header: {
+      "content-type": "application/json",
+    },
+  });
+};
