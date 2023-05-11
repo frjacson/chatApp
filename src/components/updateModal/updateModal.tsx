@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import classNames from "classnames";
 import { View } from "@tarojs/components";
 import TopBar from "../topbar";
