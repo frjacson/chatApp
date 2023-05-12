@@ -1,5 +1,10 @@
 .index {
   padding-bottom: $taro-spacing-col-base;
+  .fileLogo {
+    img {
+      margin-left: 100px;
+    }
+  }
 }
 .main {
   padding: 104px $taro-spacing-col-base 0;

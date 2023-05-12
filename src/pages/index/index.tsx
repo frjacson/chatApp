@@ -31,7 +31,7 @@ export default function Index() {
     <View className='index'>
       <TopBar underline>
         <Image src={pic1} onClick={handleImageClick}></Image>
-        <Image src={fireLogo}></Image>
+        <Image src={fireLogo} className='fileLogo'></Image>
         <View>
         <View className='search'>
           <Image src={search} onClick={handleSearchClick}></Image>

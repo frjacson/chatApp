@@ -1,0 +1,87 @@
+.content {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: $taro-spacing-row-base $taro-spacing-col-base;
+  box-shadow: 0px 24px 64px -8px rgba(0,0,0,0.1);
+  .requestTop {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    .avatar {
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      overflow: hidden;
+      img {
+        width: 160px;
+        height: 160px; 
+        // top: -20px;
+        border-radius: $taro-border-radius-circle;
+      }
+    }
+    .aggreeBtn {
+      width: 160px;
+      height: 64px;
+      background: rgba(255, 93, 91, 0.1);
+      text-align: center;
+      border-radius: $taro-border-radius-lg;
+      .aggree {
+        border-radius: $taro-border-radius-lg;
+        background: #FFE431;;
+        color: $taro-text-color;
+      }
+    }
+    .rejectBtn {
+      width: 160px;
+      height: 64px;
+      background: rgba(255, 93, 91, 0.1);
+      text-align: center;
+      border-radius: $taro-border-radius-lg;
+      .reject {
+        border-radius: $taro-border-radius-lg;
+        color: $taro-color-warning;
+        background-color: rgba(255, 93, 91, 0.1);
+      }
+    }
+  }
+  .requestCenter {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    .nickName {
+      font-size: 48px;
+      font-weight: bold;
+    }
+    .time {
+      font-size: $taro-font-size-base;
+      color: $taro-text-color-grey;
+    }
+  }
+  .requestMsg {
+    width: 90%;
+    margin-top: 40px;
+    padding: 0 20px;
+    border-radius: $taro-border-radius-base;
+    background-color: $taro-bg-color-grey;
+    color: $taro-text-color-grey;
+    font-size: $taro-font-size-lg;
+    padding: 20px 20px;
+
+    .text {
+      word-break: break-all;
+      overflow:hidden; // 超出的文本隐藏
+      text-overflow:ellipsis; 
+      display:-webkit-box; // 将对象作为弹性伸缩盒子模型显示。
+      -webkit-box-orient:vertical;  //从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式）
+      -webkit-line-clamp:3; // 结合上面两个属性，表示显示的行数。
+    }
+  }
+}

@@ -29,3 +29,13 @@ export const getUserDetail = async () => {
     },
   });
 };
+
+export const getRequestList = async () => {
+  return Taro.request({
+    url: "http://localhost:9999/api/user/requestList",
+    method: "GET",
+    header: {
+      "content-type": "application/json",
+    },
+  });
+};

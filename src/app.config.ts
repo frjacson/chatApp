@@ -6,6 +6,7 @@ export default defineAppConfig({
     "pages/register/register",
     "pages/profile/profile",
     "pages/user_detail/userDetail",
+    "pages/friendRequest/friendRequest",
   ],
   window: {
     backgroundTextStyle: "light",

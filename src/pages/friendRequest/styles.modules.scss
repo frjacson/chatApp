@@ -1,14 +1,17 @@
-.detailContainer {
+.main {
   .backLogo {
-    img {
+    img { 
       width: 48px !important;
       height: 48px !important;
     }
   }
-  .topText {
+  
+  .title {
+    // margin-left: -86px;
     font-size: 40px;
   }
-  .itemList { 
+
+  .friendContainer {
     margin-top: 100px;
   }
 }
