@@ -1,0 +1,21 @@
+.main {
+  .backLogo {
+    img { 
+      width: 48px !important;
+      height: 48px !important;
+    }
+  }
+  .title {
+    margin-left: 100px;
+    font-size: 40px;
+  }
+  .groupLogo {
+    img {
+      height: 12px !important;
+      padding: 10px 30px 10px;
+    }
+  }
+  .chatContainer {
+    margin-top: 88px;
+  }
+}

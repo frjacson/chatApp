@@ -1,0 +1,50 @@
+.listContainer {
+  padding: 20px 28px;
+  margin: 0 auto;
+  .chatTime {
+    font-size: $taro-font-size-base;
+    color: $taro-text-color-grey;
+    text-align: center;
+  }
+  .chatMessage.reverse {
+    flex-direction: row-reverse;
+  }
+  .chatMessage {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    .chatAvatar {
+      img {
+        width: 90px;
+        height: 90px;
+        border-radius: $taro-border-radius-base;
+      }
+    }
+    .textContainer {
+      max-width: 480px;
+      font-size: $taro-font-size-lg;
+      border-radius: $taro-border-radius-base;
+      padding: 24px 24px;
+    }
+    .textContainer.leftText {
+      margin-left: 20px;
+      background: #eee;
+    }
+    .textContainer.rightText {
+      margin-right: 20px;
+      background: rgba(255,228,49,0.8);
+    }
+    .imgContainer {
+      img {
+        max-width: 400px;
+        border-radius: $taro-border-radius-base;
+      }
+      .leftImage {
+        margin-left: 20px;
+      }
+      .rightImage {
+        margin-right: 20px;
+      }
+    }
+  }
+}

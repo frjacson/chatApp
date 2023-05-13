@@ -7,6 +7,7 @@ export default defineAppConfig({
     "pages/profile/profile",
     "pages/user_detail/userDetail",
     "pages/friendRequest/friendRequest",
+    "pages/chatRoom/chatRoom",
   ],
   window: {
     backgroundTextStyle: "light",
