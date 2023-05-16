@@ -36,9 +36,12 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
+    "@nutui/nutui-react-taro": "^1.5.4",
+    "@tarojs/cli": "^3.6.6",
     "@tarojs/components": "3.6.6",
     "@tarojs/helper": "3.6.6",
     "@tarojs/plugin-framework-react": "3.6.6",
+    "@tarojs/plugin-html": "^3.6.6",
     "@tarojs/plugin-mock": "^0.0.9",
     "@tarojs/plugin-platform-alipay": "3.6.6",
     "@tarojs/plugin-platform-h5": "3.6.6",
@@ -53,6 +56,7 @@
     "@tarojs/taro": "3.6.6",
     "@types/mockjs": "^1.0.7",
     "async-validator": "^4.2.5",
+    "babel-plugin-import": "^1.13.6",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "mobx": "6.0",
@@ -64,7 +68,6 @@
   "devDependencies": {
     "@babel/core": "^7.8.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
-    "@tarojs/cli": "3.6.6",
     "@tarojs/webpack5-runner": "3.6.6",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.0",

@@ -21,16 +21,18 @@ export interface ChatProps {
   chatImg?: string;
   chatAudio?: string;
   chatVedio?: string;
+  scrollId?: string;
 }
 
-const ChatList:FC<ChatProps> = (props) => {
+const ChatList = (props) => {
   const { chatId = 0, 
           chatLeftAvatar=leftLogo, 
           chatRightAvatar=rightLogo, 
           chatTime, 
           chatTypes = 'text', 
           chatMsg = "你好啊拉家带口撒了房间发动机撒了点撒了房间啊啥的风景", 
-          chatImg = ''
+          chatImg = '',
+          scrollId="msg0"
         } = props;
   const { chatImages } = useContext(ImageContext)
   const TextGenerate = () => {
@@ -39,7 +41,7 @@ const ChatList:FC<ChatProps> = (props) => {
       [styles.rightText]: chatId === 1
     })
     return (
-      <View className={textClasses}>
+      <View className={textClasses} id={scrollId}>
         <Text>{chatMsg}</Text>
       </View>
     )

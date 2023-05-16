@@ -67,7 +67,6 @@ const config = {
         },
       },
     },
-    esnextModules: ["taro-cropper"],
   },
   rn: {
     appName: "taroDemo",
@@ -79,11 +78,17 @@ const config = {
   },
   sass: {
     resource: [path.resolve(__dirname, "..", "src/styles/_variable.scss")],
+    data: `@import "@nutui/nutui-react-taro/dist/styles/variables.scss";`,
   },
   alias: {
     "@/components": path.resolve(__dirname, "..", "src/components"),
     "@/asserts": path.resolve(__dirname, "..", "src/asserts"),
     "@/utils": path.resolve(__dirname, "..", "src/utils"),
+  },
+  pxtransform: {
+    config: {
+      selectorBlackList: ["nut-"],
+    },
   },
 };
 

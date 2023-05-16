@@ -45,15 +45,19 @@ export const getTime = (time: string) => {
     }
     writeTime += "昨天" + writeTime;
     return writeTime;
+  } else {
+    if (oM < 10) {
+      writeTime = "0" + oM + "/";
+    } else {
+      writeTime = oM + "/";
+    }
+    if (od < 10) {
+      writeTime = writeTime + "0" + od;
+    } else {
+      writeTime = writeTime + od;
+    }
+    return oy + "/" + writeTime;
   }
-
-  if (oM < 10) {
-    writeTime = "0" + oM + "/";
-  }
-  if (od < 10) {
-    writeTime = writeTime + "0" + od;
-  }
-  return oy + "/" + writeTime;
 };
 
 export const getChatTime = (time: number) => {
@@ -106,22 +110,22 @@ export const getChatTime = (time: number) => {
     } else {
       writeTime = oh + ":";
     }
-    if (om < 10) {
-      writeTime += "0" + om;
+    if (oM < 10) {
+      writeTime += "0" + oM;
     } else {
-      writeTime += om;
+      writeTime += oM;
     }
-    return om + "月" + od + "日 " + writeTime;
+    return oM + "月" + od + "日 " + writeTime;
   } else {
     if (oh < 10) {
       writeTime = "0" + oh + ":";
     } else {
       writeTime = oh + ":";
     }
-    if (om < 10) {
-      writeTime += "0" + om;
+    if (oM < 10) {
+      writeTime += "0" + oM;
     } else {
-      writeTime += om;
+      writeTime += oM;
     }
     return oy + "年" + oM + "月" + od + "日 " + writeTime;
   }
