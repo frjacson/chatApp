@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { View, Image, Textarea } from "@tarojs/components";
 import voice from '@/asserts/images/voice.png';
 import emoji from '@/asserts/images/emoji.png';

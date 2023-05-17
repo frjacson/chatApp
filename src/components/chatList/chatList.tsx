@@ -24,7 +24,7 @@ export interface ChatProps {
   scrollId?: string;
 }
 
-const ChatList = (props) => {
+const ChatList:FC<ChatProps> = (props) => {
   const { chatId = 0, 
           chatLeftAvatar=leftLogo, 
           chatRightAvatar=rightLogo, 
