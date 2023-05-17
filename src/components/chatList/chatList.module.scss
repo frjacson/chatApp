@@ -19,6 +19,11 @@
         height: 90px;
         border-radius: $taro-border-radius-base;
       }
+      image {
+        width: 90px;
+        height: 90px;
+        border-radius: $taro-border-radius-base; 
+      }
     }
     .textContainer {
       max-width: 480px;
@@ -38,6 +43,10 @@
       img {
         max-width: 400px;
         border-radius: $taro-border-radius-base;
+      }
+      image {
+        max-width: 400px;
+        border-radius: $taro-border-radius-base; 
       }
       .leftImage {
         margin-left: 20px;

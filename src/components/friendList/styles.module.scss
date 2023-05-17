@@ -15,6 +15,12 @@
       border-radius: $taro-border-radius-base;
       background-color: $taro-color-primary;
     }
+    image {
+      width: 96px;
+      height: 96px;
+      border-radius: $taro-border-radius-base;
+      background-color: $taro-color-primary; 
+    }
     .tip {
       position: absolute;
       top: -8px;

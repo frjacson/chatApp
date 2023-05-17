@@ -1,0 +1,33 @@
+.itemContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 8px;
+  flex-wrap: wrap;
+  .item {
+    flex: 0 0 25%;
+    text-align: center;
+    /* 设置元素宽度为容器的四分之一 */
+    box-sizing: border-box;
+    /* 计算宽度时包括边框和填充 */
+    padding: 5px;
+    img {
+      width: 74px;
+      height: 74px;
+      padding: 24px;
+      border-radius: 24px;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    image {
+      width: 74px;
+      height: 74px;
+      padding: 24px;
+      border-radius: 24px;
+      background-color: rgba(255, 255, 255, 1); 
+    }
+    .name {
+      color: $taro-text-color-grey;
+      font-size: $taro-font-size-base;
+    }
+  }
+}

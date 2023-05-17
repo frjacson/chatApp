@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { createContext, createRef, useCallback, useEffect, useRef, useState } from "react";
+import React, { createContext, createRef, useCallback, useEffect, useRef, useState } from "react";
 import { View, Image, ScrollView } from "@tarojs/components";
 import TopBar from "@/components/topbar";
 import ChatList, { ChatProps } from "@/components/chatList/chatList";
@@ -51,13 +51,32 @@ const mockData: ChatProps[] = [
   },
 ]
 export const ImageContext = createContext<{chatImages: string[]}>({ chatImages: [] });
+
+const MemoizedChatList = React.memo(ChatList);
 const ChatRoom = () => {
   const [chatImages, setChatImages] = useState<string[]>([]);
   const [dataList, setDataList] = useState<ChatProps[]>([]);
   const [submitHeight, setSubmitHeight] = useState(60);
-  // const [scrollToId, setScrollToId] = useState("");
   const scrollViewRef = createRef();
   let oldTime = useRef(new Date().getTime());
+  const renderChatList = useCallback(
+    (item, key) => (
+      <MemoizedChatList
+        key={key}
+        chatId={item.chatId}
+        chatLeftAvatar={item.chatLeftAvatar}
+        chatRightAvatar={item.chatRightAvatar}
+        chatTime={item.chatTime}
+        chatTypes={item.chatTypes}
+        chatMsg={item.chatMsg}
+        chatImg={item.chatImg}
+        chatAudio={item.chatAudio}
+        chatVedio={item.chatVedio}
+        scrollId={"msg" + key}
+      />
+    ),
+    []
+  );
   const getDataList = useCallback(() => {
     const newMockData = mockData.reverse();
     newMockData.forEach((item, index) => {
@@ -73,10 +92,15 @@ const ChatRoom = () => {
     setDataList([...newMockData].reverse())
   }, [])
   useEffect(() => {
-    const imageData = mockData.filter(item => item.chatTypes)
-    setChatImages(imageData.map(item => item.chatImg + ""));
     getDataList();
-  }, [getDataList])
+  },[getDataList])
+  const getImages = useCallback(() => {
+    const imageData = dataList.filter(item => item.chatTypes)
+    setChatImages(imageData.map(item => item.chatImg + ""));    
+  }, [dataList])
+  useEffect(() => {
+    getImages();
+  }, [getImages])
   const getConfirmInputValue = (value) => {
     setDataList((pre) => {
       return [...pre, {"chatId": 1, "chatTypes": 'text', "chatMsg": value, "chatTime": new Date().getTime()}]
@@ -105,8 +129,13 @@ const ChatRoom = () => {
   }
   useEffect(() => {
     getScrollBottom()
-    console.log(2);
   }, [getScrollBottom])
+  const getNewItemInfo = (value) => {
+    //这里存放着子组件传出来的信息
+    setDataList((pre) => {
+      return [...pre, ...value]
+    })
+  }
   return (
     <View className={styles.main}>
       <TopBar>
@@ -122,26 +151,12 @@ const ChatRoom = () => {
         <ScrollView scrollY scrollWithAnimation ref={scrollViewRef}>
           <ImageContext.Provider value={{chatImages}}>
             {
-              dataList && dataList.map((item, key) => {
-                return (
-                  <ChatList key={key} chatId={item.chatId} 
-                    chatLeftAvatar={item.chatLeftAvatar}
-                    chatRightAvatar={item.chatRightAvatar}
-                    chatTime={item.chatTime}
-                    chatTypes={item.chatTypes}
-                    chatMsg={item.chatMsg}
-                    chatImg={item.chatImg}
-                    chatAudio={item.chatAudio}
-                    chatVedio={item.chatVedio}
-                    scrollId={"msg" +key+""}
-                  />
-                )
-              })
+              dataList && dataList.map(renderChatList)
             }
           </ImageContext.Provider>
         </ScrollView>
       </View>
-      <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight}></ChatSubmit>
+      <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight} onItemClick={getNewItemInfo}></ChatSubmit>
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import { FC , useContext } from "react";
+import { FC , useContext, memo, useCallback } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image, Text } from "@tarojs/components";
 import leftLogo from '@/asserts/images/img.png';
@@ -24,7 +24,7 @@ export interface ChatProps {
   scrollId?: string;
 }
 
-const ChatList:FC<ChatProps> = (props) => {
+const ChatList:FC<ChatProps> = memo((props) => {
   const { chatId = 0, 
           chatLeftAvatar=leftLogo, 
           chatRightAvatar=rightLogo, 
@@ -41,12 +41,18 @@ const ChatList:FC<ChatProps> = (props) => {
       [styles.rightText]: chatId === 1
     })
     return (
-      <View className={textClasses} id={scrollId}>
+      <View className={textClasses}>
         <Text>{chatMsg}</Text>
       </View>
     )
   }
-  const ImageGenerate = () => {
+  const handlePreviewImage = useCallback(() => {
+    Taro.previewImage({
+      urls: chatImages,
+      current: chatImg
+    })
+  }, [chatImages, chatImg])
+  const ImageGenerate = useCallback(() => {
     const imgClasses = classNames({
       [styles.leftImage]: chatId === 0,
       [styles.rightImage]: chatId === 1
@@ -58,7 +64,7 @@ const ChatList:FC<ChatProps> = (props) => {
         </View>}
       </View>
     )
-  }
+  }, [chatId, chatImg, handlePreviewImage])
   const mapGen = {
     'text': TextGenerate,
     'image': ImageGenerate
@@ -66,14 +72,8 @@ const ChatList:FC<ChatProps> = (props) => {
   const chatClasses = classNames(styles.chatMessage, {
     [styles.reverse]: chatId === 1
   })
-  const handlePreviewImage = () => { 
-    Taro.previewImage({
-      urls: chatImages,
-      current: chatImg
-    })
-  }
   return (
-    <View className={styles.listContainer}>
+    <View className={styles.listContainer} id={scrollId}>
       {
         chatTime && <View className={styles.chatTime}>
           <Text>{getChatTime(chatTime)}</Text>
@@ -89,5 +89,5 @@ const ChatList:FC<ChatProps> = (props) => {
       </View>
     </View>
   )
-}
+})
 export default ChatList;

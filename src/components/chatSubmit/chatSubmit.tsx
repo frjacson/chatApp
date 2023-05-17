@@ -7,23 +7,29 @@ import addLogo from '@/asserts/images/add.png';
 import keyboard from '@/asserts/images/keyboard.png';
 import optBack from '@/asserts/images/opt_back.png';
 import Emoji from "../emoji/emoji";
+import ChatAdd from "../chatAddCom/ChatAdd";
 import styles from './styles.module.scss';
 
 interface ChatSubMitProps  {
   onConfirmInput?: (value) => void;
   onChangeHeight?: (value) => void;
+  onItemClick?: (value) => void;
 }
 const ChatSubmit:FC<ChatSubMitProps> = (props) => {
-  const { onConfirmInput, onChangeHeight } = props;
+  const { onConfirmInput, onChangeHeight, onItemClick } = props;
   const [isVoice, setIsVoice] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const [textareaValue, setTextareaValue] = useState("");
   const [resetTextarea, setResetTextarea] = useState(false);
   const handleVoiceClick = () => {
     setIsVoice(!isVoice);
+    setShowEmoji(false);
+    setShowMore(false);
   }
   const handleEmojiClick = () => {
     setShowEmoji(!showEmoji);
+    setShowMore(false);
     Taro.nextTick(() => {
       getHeight();
     })
@@ -87,6 +93,19 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
       onChangeHeight(60);
     }
   }
+  const handleAddClick = () => {
+    setShowEmoji(false);
+    setShowMore(!showMore);
+    Taro.nextTick(() => {
+      getHeight();
+    })
+  }
+  const getItemClick = (value) => {
+    console.log(value);
+    if(onItemClick) {
+      onItemClick(value);
+    }
+  }
   return (
     <View className={styles.main} id='container'>
       <View className={styles.submitContainer}>
@@ -111,7 +130,7 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
             <Image src={emoji}></Image>
           </View>
           <View className={styles.add}>
-            <Image src={addLogo}></Image>
+            <Image src={addLogo} onClick={handleAddClick}></Image>
           </View>
         </View>
       </View>
@@ -125,6 +144,11 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
               <View className={styles.compButton} onClick={() => handleSubmit(textareaValue)}>发送</View>
             </View>
             <Emoji onClickEmoji={getClickEmoji}></Emoji>
+          </View>
+        }
+        {
+          showMore && <View className={styles.moreContainer}>
+            <ChatAdd itemClick={getItemClick}></ChatAdd>
           </View>
         }
       </View>

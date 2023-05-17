@@ -105,5 +105,11 @@
         }
       }
     }
+    .moreContainer {
+      width: 100%;
+      min-height: 460px;
+      background: rgba(236, 237, 238, 1);
+      box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+    }
   }
 }

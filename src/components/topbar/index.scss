@@ -28,6 +28,12 @@
           padding-top: 10px;
           border-radius: $taro-border-radius-base;
         }
+        image {
+          width: 68px;
+          height: 68px;
+          padding-top: 10px;
+          border-radius: $taro-border-radius-base; 
+        }
       }
       .topBarContent {
         padding-left: $taro-spacing-col-base;
@@ -35,6 +41,10 @@
         img {
           width: 88px;
           height: 42px;
+        }
+        image {
+          width: 88px;
+          height: 42px; 
         }
       }
       .topBarRight {
@@ -46,6 +56,11 @@
           width: 52px;
           height: 52px;
           padding-top: 10px;
+        }
+        image {
+          width: 52px;
+          height: 52px;
+          padding-top: 10px; 
         }
       }
     }

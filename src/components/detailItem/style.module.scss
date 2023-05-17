@@ -24,6 +24,12 @@
       border-radius: $taro-border-radius-base;
       margin-top: 16px;
     }
+    image {
+      width: 108px;
+      height: 108px;
+      border-radius: $taro-border-radius-base;
+      margin-top: 16px; 
+    }
   }
 
   .rightChild {
@@ -35,6 +41,13 @@
       transform: rotate(-180deg);
       margin-top: 16px;
       opacity: 0.3;
+    }
+    image {
+      width: 28px;
+      height: 28px;
+      transform: rotate(-180deg);
+      margin-top: 16px;
+      opacity: 0.3; 
     }
   }
 }

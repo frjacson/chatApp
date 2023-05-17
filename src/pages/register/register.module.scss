@@ -23,6 +23,10 @@
       width: 194px;
       height: 92px;
     }
+    image {
+      width: 194px;
+      height: 92px;
+    }
   }
   .registerContainer {
     width: 100%;
@@ -55,6 +59,10 @@
             text-align: right;
             color: $taro-color-warning;
             img {
+              width: 42px;
+              height: 32px;
+            }
+            image {
               width: 42px;
               height: 32px;
             }
