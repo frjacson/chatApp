@@ -12,13 +12,16 @@
     }
   }
   .more {
+    margin-top: -10px;
     img {
       height: 12px !important;
       padding: 10px 30px 10px;
+      line-height: 12px;
     }
     image {
       height: 12px !important;
-      padding: 10px 30px 10px;
+      line-height: 12px;
+      padding: 0px 60px 10px;
     }
   }
 
