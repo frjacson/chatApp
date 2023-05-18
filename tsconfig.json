@@ -25,6 +25,7 @@
       "@/components/*": ["src/components/*"],
       "@/asserts/*": ["src/asserts/*"],
       "@/utils/*": ["src/utils/*"],
+      "@/pages/*": ["src/pages/*"],
     }
   },
   "include": ["./src", "./types"],

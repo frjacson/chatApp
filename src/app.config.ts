@@ -1,5 +1,6 @@
 export default defineAppConfig({
   pages: [
+    "pages/chatRoom/chatRoom",
     "pages/index/index",
     "pages/search/search",
     "pages/login/login",
@@ -7,7 +8,6 @@ export default defineAppConfig({
     "pages/profile/profile",
     "pages/user_detail/userDetail",
     "pages/friendRequest/friendRequest",
-    "pages/chatRoom/chatRoom",
   ],
   window: {
     backgroundTextStyle: "light",

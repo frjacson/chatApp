@@ -55,5 +55,40 @@
         margin-right: 20px;
       }
     }
+
+    .voiceContainer {
+      font-size: 36px;
+      .leftVoice {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 60px;
+        max-width: 400px;
+        margin-left: 20px;
+        background: #eee;
+        border-radius: $taro-border-radius-base;
+        padding: 18px 18px;
+        .voiceImage {
+          width: 48px;
+          height: 48px;
+        }
+      }
+      .rightVoice {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 100px;
+        max-width: 560px;
+        margin-right: 20px;
+        background: rgba(255,228,49,0.8);
+        border-radius: $taro-border-radius-base;
+        padding: 18px 18px;
+        .voiceImage {
+          width: 48px;
+          height: 48px;
+          transform: rotate(-180deg);
+        }
+      }
+    }
   }
 }

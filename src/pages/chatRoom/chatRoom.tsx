@@ -49,6 +49,22 @@ const mockData: ChatProps[] = [
     chatMsg: "你好啊",
     chatTime: 1683966124590
   },
+  {
+    chatId: 1,
+    chatMsg: {
+      time: 2,
+    },
+    chatTypes: 'audio',
+    chatTime: 1684412725938
+  },
+  {
+    chatId: 0,
+    chatMsg: {
+      time: 200,
+    },
+    chatTypes: 'audio',
+    chatTime: 1684412892090
+  }
 ]
 export const ImageContext = createContext<{chatImages: string[]}>({ chatImages: [] });
 
@@ -136,6 +152,10 @@ const ChatRoom = () => {
       return [...pre, ...value]
     })
   }
+  const getVoiceInfo = (path, duration) => {
+    console.log(path);
+    console.log(duration);
+  }
   return (
     <View className={styles.main}>
       <TopBar>
@@ -156,7 +176,7 @@ const ChatRoom = () => {
           </ImageContext.Provider>
         </ScrollView>
       </View>
-      <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight} onItemClick={getNewItemInfo}></ChatSubmit>
+      <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight} onItemClick={getNewItemInfo} onVoiceTouch={getVoiceInfo}></ChatSubmit>
     </View>
   )
 }

@@ -3,13 +3,18 @@ import Taro from "@tarojs/taro";
 import { View, Image, Text } from "@tarojs/components";
 import leftLogo from '@/asserts/images/img.png';
 import rightLogo from '@/asserts/images/img2.jpeg';
+import yuyin from '@/asserts/images/yuyin.png';
 import classNames from "classnames";
 import { getChatTime } from "@/utils/getTimes";
+import { ImageContext } from "@/pages/chatRoom/chatRoom";
 import styles from './chatList.module.scss';
-import { ImageContext } from "../../../src/pages/chatRoom/chatRoom";
 
 
 type chatTypes = 'text' | 'image' | 'audio' | 'vedio'
+type VedioProps = {
+  time?: number;
+  valueSrc?: string;
+}
 export interface ChatProps {
   chatId?: number;
   currentId?: number;
@@ -17,7 +22,7 @@ export interface ChatProps {
   chatRightAvatar?: string;
   chatTime?: number;
   chatTypes?: chatTypes
-  chatMsg?: string;
+  chatMsg?: string | VedioProps;
   chatImg?: string;
   chatAudio?: string;
   chatVedio?: string;
@@ -42,7 +47,30 @@ const ChatList:FC<ChatProps> = memo((props) => {
     })
     return (
       <View className={textClasses}>
-        <Text>{chatMsg}</Text>
+        <Text>{chatMsg as string}</Text>
+      </View>
+    )
+  }
+  const VoiceGenerate = () => {
+    const voiceClasses = classNames({
+      [styles.leftVoice]: chatId === 0,
+      [styles.rightVoice]: chatId === 1
+    })
+    const msg = chatMsg as VedioProps
+    return (
+      <View className={styles.voiceContainer}>
+       {
+        chatId === 0 && <View className={voiceClasses} style={{width: `${msg.time as number * 4}px`}}>
+          <Image src={yuyin} className={styles.voiceImage}></Image>
+          {msg.time + '”' || 2 + '“'}
+        </View>
+       }
+       {
+        chatId === 1 && <View className={voiceClasses} style={{width: `${msg.time as number * 4}px`}}>
+          {msg.time + '”' || 2 + '“'}
+          <Image src={yuyin} className={styles.voiceImage}></Image>
+        </View> 
+       }
       </View>
     )
   }
@@ -67,7 +95,8 @@ const ChatList:FC<ChatProps> = memo((props) => {
   }, [chatId, chatImg, handlePreviewImage])
   const mapGen = {
     'text': TextGenerate,
-    'image': ImageGenerate
+    'image': ImageGenerate,
+    'audio': VoiceGenerate
   }
   const chatClasses = classNames(styles.chatMessage, {
     [styles.reverse]: chatId === 1

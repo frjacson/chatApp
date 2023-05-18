@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { View, Image, Textarea } from "@tarojs/components";
 import voice from '@/asserts/images/voice.png';
 import emoji from '@/asserts/images/emoji.png';
@@ -14,14 +14,17 @@ interface ChatSubMitProps  {
   onConfirmInput?: (value) => void;
   onChangeHeight?: (value) => void;
   onItemClick?: (value) => void;
+  onVoiceTouch?: (tempFilePath, duration) => void;
 }
 const ChatSubmit:FC<ChatSubMitProps> = (props) => {
-  const { onConfirmInput, onChangeHeight, onItemClick } = props;
+  const { onConfirmInput, onChangeHeight, onItemClick, onVoiceTouch } = props;
   const [isVoice, setIsVoice] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [textareaValue, setTextareaValue] = useState("");
   const [resetTextarea, setResetTextarea] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [isRecording, setIsRecording] = useState(false);
   const handleVoiceClick = () => {
     setIsVoice(!isVoice);
     setShowEmoji(false);
@@ -106,6 +109,35 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
       onItemClick(value);
     }
   }
+  useEffect(() => {
+    let timer;
+    if(isRecording) {
+      timer = setInterval(() => {
+        setDuration((pre) => pre + 1);
+      }, 1000)
+    }
+    return () => {
+      clearInterval(timer);
+    }
+  }, [isRecording])
+  const handleTouchStart = () => {
+    Taro.startRecord({
+      success(res) {
+        setIsRecording(true);
+        if(onVoiceTouch) {
+          onVoiceTouch(res.tempFilePath, duration);
+        }
+      },
+      fail(err) {
+        console.error(err);
+      }
+    })
+  }
+  const handleTouchEnd = () => {
+    Taro.stopRecord();
+    setIsRecording(false);
+    setDuration(0);
+  }
   return (
     <View className={styles.main} id='container'>
       <View className={styles.submitContainer}>
@@ -122,7 +154,7 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
             !isVoice && <Textarea key={resetTextarea ? 'reset' : 'normal'} autoHeight value={textareaValue} onInput={(e) => {setTextareaValue(e.detail.value)}} className={styles.input} confirmType='send' onConfirm={handleInputConfirm} onFocus={handleTextareaFocus} />
           }
           {
-            isVoice && <View className={styles.talkText}>按住 说话</View>
+            isVoice && <View className={styles.talkText} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>按住 说话</View>
           }
         </View>
         <View className={styles.right}>
