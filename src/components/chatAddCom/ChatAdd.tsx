@@ -84,7 +84,7 @@ const ChatAdd:FC<AddProps> = (props) => {
         itemList && itemList.map((item, index) => {
           return (
             <View key={index} className={styles.item} onClick={() => handleItemClick(item.itemName)}>
-              <Image src={item.itemSrc as string}></Image>
+              <Image src={item.itemSrc as string} className={styles.myImage}></Image>
               <View className={styles.name}>{item.itemName}</View>
             </View>
           )

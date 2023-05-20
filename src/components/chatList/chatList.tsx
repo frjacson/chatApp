@@ -1,4 +1,4 @@
-import { FC , useContext, memo, useCallback } from "react";
+import { FC, memo, useCallback } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image, Text } from "@tarojs/components";
 import leftLogo from '@/asserts/images/img.png';
@@ -6,7 +6,6 @@ import rightLogo from '@/asserts/images/img2.jpeg';
 import yuyin from '@/asserts/images/yuyin.png';
 import classNames from "classnames";
 import { getChatTime } from "@/utils/getTimes";
-import { ImageContext } from "@/pages/chatRoom/chatRoom";
 import styles from './chatList.module.scss';
 
 
@@ -29,7 +28,7 @@ export interface ChatProps {
   scrollId?: string;
 }
 
-const ChatList:FC<ChatProps> = memo((props) => {
+const ChatList:FC<ChatProps & {chatImages: string[]}> = memo((props) => {
   const { chatId = 0, 
           chatLeftAvatar=leftLogo, 
           chatRightAvatar=rightLogo, 
@@ -37,9 +36,9 @@ const ChatList:FC<ChatProps> = memo((props) => {
           chatTypes = 'text', 
           chatMsg = "你好啊拉家带口撒了房间发动机撒了点撒了房间啊啥的风景", 
           chatImg = '',
-          scrollId="msg0"
+          scrollId="msg0",
+          chatImages
         } = props;
-  const { chatImages } = useContext(ImageContext)
   const TextGenerate = () => {
     const textClasses = classNames(styles.textContainer, {
       [styles.leftText]: chatId === 0,

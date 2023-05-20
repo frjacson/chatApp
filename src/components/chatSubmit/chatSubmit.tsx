@@ -113,7 +113,9 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
     let timer;
     if(isRecording) {
       timer = setInterval(() => {
-        setDuration((pre) => pre + 1);
+        setDuration((pre) => {
+          return pre + 1;
+        });
       }, 1000)
     }
     return () => {
@@ -171,7 +173,7 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
           showEmoji &&  <View className={styles.emojiContainer}>
             <View className={styles.emojiButton}>
               <View className={styles.delButton} onClick={handleDelete}>
-                <Image src={optBack}></Image>
+                <Image src={optBack} className={styles.delete}></Image>
               </View>
               <View className={styles.compButton} onClick={() => handleSubmit(textareaValue)}>发送</View>
             </View>

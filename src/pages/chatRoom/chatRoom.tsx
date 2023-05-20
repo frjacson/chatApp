@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import React, { createContext, createRef, useCallback, useEffect, useRef, useState } from "react";
+import React, { createRef, useCallback, useEffect, useRef, useState } from "react";
 import { View, Image, ScrollView } from "@tarojs/components";
 import TopBar from "@/components/topbar";
 import ChatList, { ChatProps } from "@/components/chatList/chatList";
@@ -66,7 +66,7 @@ const mockData: ChatProps[] = [
     chatTime: 1684412892090
   }
 ]
-export const ImageContext = createContext<{chatImages: string[]}>({ chatImages: [] });
+// export const ImageContext = createContext<{chatImages: string[]}>({ chatImages: [] });
 
 const MemoizedChatList = React.memo(ChatList);
 const ChatRoom = () => {
@@ -89,9 +89,10 @@ const ChatRoom = () => {
         chatAudio={item.chatAudio}
         chatVedio={item.chatVedio}
         scrollId={"msg" + key}
+        chatImages={chatImages}
       />
     ),
-    []
+    [chatImages]
   );
   const getDataList = useCallback(() => {
     const newMockData = mockData.reverse();
@@ -111,7 +112,7 @@ const ChatRoom = () => {
     getDataList();
   },[getDataList])
   const getImages = useCallback(() => {
-    const imageData = dataList.filter(item => item.chatTypes)
+    const imageData = dataList.filter(item => item.chatTypes === 'image')
     setChatImages(imageData.map(item => item.chatImg + ""));    
   }, [dataList])
   useEffect(() => {
@@ -155,6 +156,9 @@ const ChatRoom = () => {
   const getVoiceInfo = (path, duration) => {
     console.log(path);
     console.log(duration);
+    setDataList((pre) => {
+      return [...pre, {"chatId": 1, "chatTypes": 'audio', "chatMsg": {time: duration, valueSrc: path}, "chatTime": new Date().getTime()}]
+    })
   }
   return (
     <View className={styles.main}>
@@ -169,11 +173,9 @@ const ChatRoom = () => {
       </TopBar>
       <View className={styles.chatContainer} style={{marginBottom: submitHeight}}>
         <ScrollView scrollY scrollWithAnimation ref={scrollViewRef}>
-          <ImageContext.Provider value={{chatImages}}>
-            {
-              dataList && dataList.map(renderChatList)
-            }
-          </ImageContext.Provider>
+          {
+            dataList && dataList.map(renderChatList)
+          }
         </ScrollView>
       </View>
       <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight} onItemClick={getNewItemInfo} onVoiceTouch={getVoiceInfo}></ChatSubmit>
