@@ -29,4 +29,42 @@
     margin-top: 88px;
     // margin-bottom: 100px;  // 防止底部内容被遮挡
   }
+
+  .bgContainer {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 1002;
+    .progressBar {
+      height: 84px;
+      width: 600px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 42px;
+      text-align: center;
+      .time {
+        display: inline-block;
+        min-width: 128px;
+        // width: 120px;
+        line-height: 84px;
+        background-color: $taro-color-primary;
+        border-radius: 42px;
+      }
+    }
+    .delete {
+      position: absolute;
+      bottom: 148px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: $taro-font-size-lg;
+    }
+  }
 }

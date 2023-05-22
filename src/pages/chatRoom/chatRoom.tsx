@@ -74,6 +74,8 @@ const ChatRoom = () => {
   const [dataList, setDataList] = useState<ChatProps[]>([]);
   const [submitHeight, setSubmitHeight] = useState(60);
   const scrollViewRef = createRef();
+  const [showTime, setShowTime] = useState(false);
+  const [recordTime, setRecordTime] = useState(0);
   let oldTime = useRef(new Date().getTime());
   const renderChatList = useCallback(
     (item, key) => (
@@ -153,13 +155,27 @@ const ChatRoom = () => {
       return [...pre, ...value]
     })
   }
-  const getVoiceInfo = (path, duration) => {
-    console.log(path);
-    console.log(duration);
+  const getVoiceInfo = (path, duration:number) => {
+    let durationTime = Math.floor(duration/1000);
     setDataList((pre) => {
-      return [...pre, {"chatId": 1, "chatTypes": 'audio', "chatMsg": {time: duration, valueSrc: path}, "chatTime": new Date().getTime()}]
+      return [...pre, {"chatId": 1, "chatTypes": 'audio', "chatMsg": {time: durationTime, valueSrc: path}, "chatTime": new Date().getTime()}]
     })
+    setRecordTime(0);
   }
+  const handleTimeShow = (isShow:boolean) => {
+    setShowTime(isShow)
+  }
+  useEffect(() => {
+    let timer;
+    if(showTime) {
+      timer = setInterval(() => {
+        setRecordTime(pre => pre+1);
+      }, 1000)
+    }
+    return () => {
+      clearInterval(timer);
+    }
+  }, [showTime])
   return (
     <View className={styles.main}>
       <TopBar>
@@ -178,7 +194,15 @@ const ChatRoom = () => {
           }
         </ScrollView>
       </View>
-      <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight} onItemClick={getNewItemInfo} onVoiceTouch={getVoiceInfo}></ChatSubmit>
+      <ChatSubmit onConfirmInput={getConfirmInputValue} onChangeHeight={getSubmitHeight} onItemClick={getNewItemInfo} onVoiceTouchInfo={getVoiceInfo} onTimeShow={handleTimeShow}></ChatSubmit>
+     {
+      showTime &&  <View className={styles.bgContainer}>
+        <View className={styles.progressBar}>
+          <View className={styles.time} style={{width: recordTime/0.6 + '%'}}>{recordTime}</View>
+        </View>
+        <View className={styles.delete}>上滑取消录音</View>
+      </View>
+     }
     </View>
   )
 }

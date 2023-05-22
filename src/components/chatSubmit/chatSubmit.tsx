@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { View, Image, Textarea } from "@tarojs/components";
 import voice from '@/asserts/images/voice.png';
 import emoji from '@/asserts/images/emoji.png';
@@ -14,17 +14,19 @@ interface ChatSubMitProps  {
   onConfirmInput?: (value) => void;
   onChangeHeight?: (value) => void;
   onItemClick?: (value) => void;
-  onVoiceTouch?: (tempFilePath, duration) => void;
+  onVoiceTouchInfo?: (path, duration) => void;
+  onTimeShow?: (value) => void;
 }
 const ChatSubmit:FC<ChatSubMitProps> = (props) => {
-  const { onConfirmInput, onChangeHeight, onItemClick, onVoiceTouch } = props;
+  const { onConfirmInput, onChangeHeight, onItemClick, onTimeShow, onVoiceTouchInfo } = props;
   const [isVoice, setIsVoice] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [textareaValue, setTextareaValue] = useState("");
   const [resetTextarea, setResetTextarea] = useState(false);
-  const [duration, setDuration] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
+  const recorderManager = Taro.getRecorderManager();
+  let timer = null as any;
   const handleVoiceClick = () => {
     setIsVoice(!isVoice);
     setShowEmoji(false);
@@ -33,6 +35,7 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
   const handleEmojiClick = () => {
     setShowEmoji(!showEmoji);
     setShowMore(false);
+    setIsVoice(false);
     Taro.nextTick(() => {
       getHeight();
     })
@@ -99,6 +102,7 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
   const handleAddClick = () => {
     setShowEmoji(false);
     setShowMore(!showMore);
+    setIsVoice(false);
     Taro.nextTick(() => {
       getHeight();
     })
@@ -109,36 +113,48 @@ const ChatSubmit:FC<ChatSubMitProps> = (props) => {
       onItemClick(value);
     }
   }
-  useEffect(() => {
-    let timer;
-    if(isRecording) {
-      timer = setInterval(() => {
-        setDuration((pre) => {
-          return pre + 1;
-        });
-      }, 1000)
-    }
-    return () => {
-      clearInterval(timer);
-    }
-  }, [isRecording])
   const handleTouchStart = () => {
-    Taro.startRecord({
-      success(res) {
-        setIsRecording(true);
-        if(onVoiceTouch) {
-          onVoiceTouch(res.tempFilePath, duration);
+    timer = setTimeout(() => {
+      setIsRecording(true);
+      recorderManager.start({
+        duration: 60000, // 最大录音时长，单位为毫秒
+        format: 'mp3', // 录音格式
+      });
+      recorderManager.onStart(() => {
+        console.log('Recording started');
+        // 在开始录音时执行一些操作
+        if(onTimeShow) {
+          onTimeShow(true);
         }
-      },
-      fail(err) {
-        console.error(err);
-      }
-    })
+        setTimeout(() => {
+          handleTouchEnd();
+        },60000)
+      });
+    }, 500)
   }
   const handleTouchEnd = () => {
-    Taro.stopRecord();
-    setIsRecording(false);
-    setDuration(0);
+    clearTimeout(timer);
+    if(isRecording) {
+      // 停止录音
+      recorderManager.stop();
+      // 监听录音结束事件
+      recorderManager.onStop((res) => {
+        console.log('Recording stopped', res);
+        const { tempFilePath, duration } = res;
+        // 在结束录音时执行一些操作，如上传录音文件等
+        if(onVoiceTouchInfo) {
+          onVoiceTouchInfo(tempFilePath, duration);
+        }
+        if(onTimeShow) {
+          onTimeShow(false);
+        }
+        setIsRecording(false);
+        // 可以使用 tempFilePath 获取录音文件的临时路径
+      });
+    } else {
+      // 如果未达到长按时间阈值，则视为点击操作，执行相应的点击事件
+      console.log('Click event');
+    }
   }
   return (
     <View className={styles.main} id='container'>

@@ -50,6 +50,12 @@ const ChatList:FC<ChatProps & {chatImages: string[]}> = memo((props) => {
       </View>
     )
   }
+  const handleVoiceClick = () => {
+    const msg = chatMsg as VedioProps
+    Taro.playVoice({
+      filePath: msg.valueSrc as string
+    })
+  }
   const VoiceGenerate = () => {
     const voiceClasses = classNames({
       [styles.leftVoice]: chatId === 0,
@@ -57,7 +63,7 @@ const ChatList:FC<ChatProps & {chatImages: string[]}> = memo((props) => {
     })
     const msg = chatMsg as VedioProps
     return (
-      <View className={styles.voiceContainer}>
+      <View className={styles.voiceContainer} onClick={handleVoiceClick}>
        {
         chatId === 0 && <View className={voiceClasses} style={{width: `${msg.time as number * 4}px`}}>
           <Image src={yuyin} className={styles.voiceImage}></Image>
